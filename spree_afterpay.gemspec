@@ -5,7 +5,7 @@ require 'spree_afterpay/version'
 
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
-  s.name        = 'spree_afterpay'
+  s.name        = 'spree-afterpay'
   s.version     = SpreeAfterpay::VERSION
   s.summary     = 'Adds spree_afterpay as a Payment Method to Spree Commerce'
   s.description = s.summary
