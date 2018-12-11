@@ -1,0 +1,33 @@
+<br>
+<div data-hook="display" class="form-group">
+  <%= label_tag :payment_method_preferred_merchant_code, Spree.t(:merchant_code) %>
+  <%= text_field(:payment_method, :preferred_merchant_code, class: 'form-control' )%>
+</div>
+<div data-hook="display" class="form-group">
+  <%= label_tag :payment_method_preferred_merchant_api_key, Spree.t(:merchant_api_key) %>
+  <%= text_field(:payment_method, :preferred_merchant_api_key, class: 'form-control' )%>
+</div>
+
+<div data-hook="display" class="form-group">
+  <%= label_tag :payment_method_preferred_endpoint, Spree.t(:endpoint) %>
+  <%= text_field(:payment_method, :preferred_endpoint, class: 'form-control' )%>
+</div>
+<div data-hook="display" class="form-group">
+  <%= label_tag :payment_method_preferred_shopper_portal_url, Spree.t(:shopper_portal_url) %>
+  <%= text_field(:payment_method, :preferred_shopper_portal_url, class: 'form-control' )%>
+</div>
+<div data-hook="display" class="form-group">
+  <%= label_tag :payment_method_preferred_merchant_url, Spree.t(:merchant_url) %>
+  <%= text_field(:payment_method, :preferred_merchant_url, class: 'form-control' )%>
+</div>
+<div data-hook="display" class="form-group">
+  <%= label_tag :payment_method_preferred_merchant_portal_user, Spree.t(:merchant_user) %>
+  <%= text_field(:payment_method, :preferred_merchant_portal_user, class: 'form-control' )%>
+</div>
+
+
+<div data-hook="display" class="form-group">
+  <%= label_tag :payment_method_preferred_test_mode, Spree.t(:test_mode) %>
+  <%= check_box(:payment_method, :preferred_test_mode)%>
+</div>
+

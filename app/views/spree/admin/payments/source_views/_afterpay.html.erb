@@ -1,0 +1,26 @@
+<fieldset data-hook="afterpay">
+  <legend><%= Spree.t(:afterpay) %></legend>
+  <table class="table table-condensed table-bordered">
+    <tr>
+      <th width="20%"><%= Spree.t(:token) %>:</th>
+      <td><%= payment.source.try(:token) %></td>
+    </tr>
+    <tr>
+      <th><%= Spree.t(:afterpayid) %>:</th>
+      <td><%= payment.source.try(:transaction_id) %></td>
+    </tr>
+    <tr>
+      <th><%= Spree.t(:refund_transaction_id) %>:</th>
+      <td><%= payment.source.try(:refund_transaction_id) %></td>
+    </tr>
+
+    <tr>
+      <th><%= Spree.t(:state) %>:</th>
+      <td><%= payment.source.try(:state) %></td>
+    </tr>
+  
+  </table>
+</fieldset>
+<% if payment.source.state != 'refunded' %>
+  <%= button_link_to Spree.t('actions.refund', scope: :afterpay), spree.afterpay_refund_admin_order_payment_path(@order, payment), icon: 'money' %>
+<%end%>

@@ -1,0 +1,20 @@
+<fieldset data-hook="after-pay">
+  <legend><%= Spree.t(:afterpay) %></legend>
+  <table class="table table-condensed table-bordered">
+    <tr>
+      <th width="20%"><%= Spree.t(:payper) %>:</th>
+      <td><%= payment.source.try(:payer_id) %></td>
+    </tr>
+    <tr>
+      <th><%= Spree.t(:token) %>:</th>
+      <td><%= payment.source.try(:token) %></td>
+    </tr>
+    <tr>
+      <th><%= Spree.t(:transaction_id) %>:</th>
+      <td><%= payment.source.try(:transaction_id) %></td>
+    </tr>
+    <tr>
+      <th><%= Spree.t(:state) %>:</th>
+ <td><%= payment.source.try(:state) %></td>    </tr>
+  </table>
+</fieldset>
