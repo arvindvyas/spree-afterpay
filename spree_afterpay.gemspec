@@ -5,15 +5,15 @@ require 'spree_afterpay/version'
 
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
-  s.name        = 'spree-afterpay'
+  s.name        = 'spree_afterpay'
   s.version     = SpreeAfterpay::VERSION
   s.summary     = 'Adds spree_afterpay as a Payment Method to Spree Commerce'
   s.description = s.summary
   s.required_ruby_version = '>= 2.1.0'
 
   s.author       = 'Arvind Vyas'
-  s.email        = 'arvindvyas07@gmail.com'
-  s.homepage     = 'https://github.com/arvindvyas/spree_afterpay'
+  s.email        = 'arvind.vyas@supernova.xyz'
+  s.homepage     = 'https://github.com/arvindvyas/spree-fterpay'
 
   s.files        = `git ls-files`.split("\n")
   s.test_files   = `git ls-files -- spec/*`.split("\n")

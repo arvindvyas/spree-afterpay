@@ -19,7 +19,7 @@ module SpreeAfterpay
       end
 
       def add_migrations
-        run 'bundle exec rake railties:install:migrations'
+        run 'bundle exec rake railties:install:migrations FROM=spree_afterpay'
       end
 
       def run_migrations
