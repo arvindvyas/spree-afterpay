@@ -35,26 +35,34 @@ module Spree
 
 
     def capture(order, token, payer_id)
-       payment =  begin
-        response = RestClient::Request.execute(method: :post, url: "#{preferred_endpoint}/payments/capture", payload: JSON.dump(valid_payments_token(order, token)), headers: header)
-        payment = JSON.parse(response)
-      rescue RestClient::PaymentRequired => e
-        payment = {'status'=> e.to_s}
-      end
-      if payment['status'] == 'APPROVED'
-        order.payments.create!(
-          source: Spree::AfterpayCheckout.create(
-            token: token,
-            payer_id: payer_id,
-            transaction_id: payment['id']
-          ),
-          amount: order.total,
-          payment_method_id: self.id,
-          state:  'completed'
-        )
-        payment['status']
+       status = order.payments.valid.count <= 1 && order.payments.valid.last.try(:state) != 'completed'
+       if status
+         payment =  begin
+          response = RestClient::Request.execute(method: :post, url: "#{preferred_endpoint}/payments/capture", payload: JSON.dump(valid_payments_token(order, token)), headers: header)
+          payment = JSON.parse(response)
+        rescue RestClient::PaymentRequired => e
+          payment = {'status'=> e.to_s}
+        end
+        if payment['status'] == 'APPROVED'
+
+          if  
+            order.payments.create!(
+              source: Spree::AfterpayCheckout.create(
+                token: token,
+                payer_id: payer_id,
+                transaction_id: payment['id']
+              ),
+              amount: order.total,
+              payment_method_id: self.id,
+              state:  'completed'
+            )
+          end
+          payment['status']
+        else
+          payment['status']
+        end
       else
-        payment['status']
+        'paid'
       end
     end
 
@@ -81,7 +89,7 @@ module Spree
           :response_code => refund_transaction["refundId"],
           :state => 'completed'
         )
-        refund_transaction
+        201
       end
     end
 

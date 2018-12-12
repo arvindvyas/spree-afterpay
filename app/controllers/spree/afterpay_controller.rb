@@ -18,7 +18,10 @@ module Spree
       if params['status'] == 'SUCCESS'
         order = current_order || raise(ActiveRecord::RecordNotFound)
         payment = payment_method.capture(order, params[:orderToken], params[:PayerID])
-        order.next if payment == 'APPROVED'
+        if payment == 'APPROVED'
+          order.reload 
+          order.next
+        end
         if order.complete?
           flash.notice = Spree.t(:order_processed_successfully)
           flash[:order_completed] = true

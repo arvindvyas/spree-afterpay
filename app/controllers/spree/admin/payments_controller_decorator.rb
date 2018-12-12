@@ -9,7 +9,7 @@ Spree::Admin::PaymentsController.class_eval do
       end
     elsif request.post?
       response = @payment.payment_method.refund(@payment, params[:refund_amount])
-      if response.refund
+      if response == 201
         flash[:success] = Spree.t(:refund_successful, scope: 'afterpay')
         redirect_to admin_order_payments_path(@order)
       else
