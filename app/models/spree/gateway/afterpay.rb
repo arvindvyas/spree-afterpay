@@ -9,6 +9,11 @@ module Spree
     preference :merchant_url, :string
     preference :merchant_portal_user, :string
     preference :test_mode, :boolean
+    preference :accepting_currency, :array
+    preference :country, :array
+    preference :min_amount, :string
+    preference :max_amount, :string
+
 
     def provider_class
       Spree::Gateway::Afterpay
@@ -21,6 +26,11 @@ module Spree
 
     def source_required?
       false
+    end
+
+    def eligible?(order)
+      country_iso = order.billing_address.country.iso3
+      order.total.to_i >= preferred_min_amount.to_i && order.total.to_i <= preferred_max_amount.to_i && preferred_accepting_currency.include?(order.currency) && preferred_country.include?(country_iso)
     end
 
     def header

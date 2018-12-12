@@ -25,6 +25,23 @@
   <%= text_field(:payment_method, :preferred_merchant_portal_user, class: 'form-control' )%>
 </div>
 
+<div data-hook="display" class="form-group">
+  <%= label_tag :payment_method_preferred_accepting_currency, Spree.t(:accepting_currency) %>
+  <%= select(:payment_method, :preferred_accepting_currency, Spree::Config[:supported_currencies].split(',').map { |code| ::Money::Currency.find(code) }.map(&:iso_code), {}, {class: 'select2', multiple: true})%>
+</div>
+
+<div data-hook="display" class="form-group">
+  <%= label_tag :payment_method_preferred_country, Spree.t(:country) %>
+  <%= collection_select(:payment_method, :preferred_country, Spree::Country.all, :iso3, :name, {}, {class: 'select2', multiple: true})%>
+</div>
+<div data-hook="display" class="form-group">
+  <%= label_tag :payment_method_preferred_min_amount, Spree.t(:min_amount) %>
+  <%= text_field(:payment_method, :preferred_min_amount, class: 'form-control' )%>
+</div>
+<div data-hook="display" class="form-group">
+  <%= label_tag :payment_method_preferred_max_amount, Spree.t(:max_amount) %>
+  <%= text_field(:payment_method, :preferred_max_amount, class: 'form-control' )%>
+</div>
 
 <div data-hook="display" class="form-group">
   <%= label_tag :payment_method_preferred_test_mode, Spree.t(:test_mode) %>
