@@ -172,7 +172,7 @@ module Spree
     def promotions(order)
       promo = []
       if  order.promotions.present?
-        promo << { "displayName": order.promotions.map(&:description), "amount": { "amount": order.promo_total.abs.to_f, "currency": order.currency } }
+        promo << { "displayName": order.promotions.try(:uniq).map(&:description)[0], "amount": { "amount": order.promo_total.abs.to_f, "currency": order.currency } }
       end
       promo
     end

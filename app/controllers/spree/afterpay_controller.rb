@@ -6,7 +6,6 @@ module Spree
     def create_order
       begin
         order = current_order
-        create_order = payment_method.purchase(order)
         res = JSON.parse(payment_method.purchase(order))
         redirect_to "https://portal.sandbox.afterpay.com/us/checkout/?token=#{res['token']}"
       rescue StandardError
