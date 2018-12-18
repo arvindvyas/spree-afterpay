@@ -7,7 +7,7 @@ module Spree
       begin
         order = current_order
         res = JSON.parse(payment_method.purchase(order))
-        redirect_to "https://portal.sandbox.afterpay.com/us/checkout/?token=#{res['token']}"
+        redirect_to "#{payment_method.preferred_shopper_portal_url}/checkout/?token=#{res['token']}"
       rescue StandardError
         redirect_to :back, notice: 'Something went wrong please try with other options'
       end
