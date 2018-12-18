@@ -195,7 +195,7 @@ module Spree
       additional_adjustments = order.all_adjustments.additional
       tax_adjustments = additional_adjustments.tax
       if tax_adjustments.present?
-        {  amount: tax_adjustments.map(&:amount).sum.to_f, currency: order.currenc }
+        {  amount: tax_adjustments.map(&:amount).sum.to_f, currency: order.currency }
       else
         {  "amount": '0', "currency": 'USD' }
       end
