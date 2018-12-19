@@ -104,11 +104,7 @@ module Spree
     end
 
     def cancel(authorization)
-      if void_refund(authorization)
-        ActiveMerchant::Billing::Response.new(true, 'Payment has successfully canceled', {}, {})
-      else
-        ActiveMerchant::Billing::Response.new(false, "Payment can't perform cancel", {}, {})
-      end
+      ActiveMerchant::Billing::Response.new(true, 'Payment has successfully canceled', {}, {})
     end
 
     def void(authorization, options = {})
