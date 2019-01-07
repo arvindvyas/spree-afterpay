@@ -193,7 +193,7 @@ module Spree
       if tax_adjustments.present?
         {  amount: tax_adjustments.map(&:amount).sum.to_f, currency: order.currency }
       else
-        {  "amount": '0', "currency": 'USD' }
+        {  "amount": '0', "currency": order.currency}
       end
     end
 
@@ -203,7 +203,7 @@ module Spree
       if shipping_adjustments.present?
         {  amount: shipping_adjustments.map(&:amount).sum.to_f, currency: order.currency }
       else
-        {  amount: '0', currency: 'USD' }
+        {  amount: '0', currency: order.currency }
       end
     end
 
