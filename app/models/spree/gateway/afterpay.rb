@@ -13,6 +13,8 @@ module Spree
     preference :country, :array
     preference :min_amount, :string
     preference :max_amount, :string
+    preference :user_agent, :string
+
 
 
     def provider_class
@@ -34,9 +36,8 @@ module Spree
     end
 
     def header
-      user_agent = '<pluginOrModuleOrClientLibrary>/<pluginVersion> (<platform>/<platformVersion>; Merchant/<merchantId>)'
       authorization = 'Basic' + ' ' + preferred_merchant_api_key
-      header = { content_type: 'application/json', user_agent: user_agent, authorization: authorization, accept: 'application/json' }
+      header = { content_type: 'application/json', user_agent: preferred_user_agent, authorization: authorization, accept: 'application/json' }
     end
 
     def purchase(order)

@@ -44,6 +44,11 @@
 </div>
 
 <div data-hook="display" class="form-group">
+  <%= label_tag :payment_method_preferred_user_agent, Spree.t(:user_agent) %>
+  <%= text_field(:payment_method, :preferred_user_agent, class: 'form-control' )%>
+</div>
+
+<div data-hook="display" class="form-group">
   <%= label_tag :payment_method_preferred_test_mode, Spree.t(:test_mode) %>
   <%= check_box(:payment_method, :preferred_test_mode)%>
 </div>
