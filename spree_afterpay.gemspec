@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.1.0'
 
   s.author       = 'Arvind Vyas'
-  s.email        = 'arvind.vyas@supernova.xyz'
+  s.email        = 'arvindvyas07@gmail.com'
   s.homepage     = 'https://github.com/arvindvyas/spree-fterpay'
 
   s.files        = `git ls-files`.split("\n")

@@ -176,12 +176,16 @@ module Spree
 
     def billing_address(order)
       billing = order.billing_address
-      { name: billing.full_name, line1: billing.address2 || billing.address1, suburb: billing.state.name, state: billing.state.name, postcode: billing.zipcode, countryCode: billing.country.iso, phoneNumber: billing.phone.to_s }
+      { name: billing.full_name, line1: address(billing), suburb: billing.state.name, state: billing.state.name, postcode: billing.zipcode, countryCode: billing.country.iso, phoneNumber: billing.phone.to_s }
     end
 
     def shipping_address(order)
       billing = order.shipping_address
-      { name: billing.full_name, line1: billing.address2 || billing.address1, suburb: billing.state.name, state: billing.state.name, postcode: billing.zipcode, countryCode: billing.country.iso, phoneNumber: billing.phone.to_s }
+      { name: billing.full_name, line1: address(billing), suburb: billing.state.name, state: billing.state.name, postcode: billing.zipcode, countryCode: billing.country.iso, phoneNumber: billing.phone.to_s }
+    end
+
+    def address(billing)
+      billing.address2.empty? ?  billing.address1 : billing.address2
     end
 
     def valid_payments_token(order,token)
